@@ -15,7 +15,7 @@ pip3 install -U matplotlib
 
 jupyter notebook
 
-# api
+# dev-server
 This is the dev server for flask... not a production server.
 
 Note: Make sure that you don't have an virtualenv loaded into the shell you're using... ie, automatically from vs code.
@@ -29,5 +29,13 @@ NOTE: if you can curl the result inside the container, but not outside you need 
 on other ips besides localhost: `app.run(host='0.0.0.0')`
 
 
-# api2
-Setup docker with nginx and uwsgi server for flask
+# prod-server
+Setup docker with nginx and gunicorn (Green Unicorn: Python WSGI HTTP Server for UNIX) server for flask
+I also initially set this up with wsgi but ran into some issues. Tried Green Unicorn as the next recommended 
+approach. It might make sense to try to run this with Django rather than Flask.
+
+Download models and serve them via proxy folder.
+example models: https://github.com/fchollet/deep-learning-models/releases 
+
+# module
+Project loads into the environment. However, gunicorn booting working is an infinite loop. Not sure why...

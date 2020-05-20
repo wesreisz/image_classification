@@ -1,0 +1,36 @@
+metadata:
+  configurationMountPath: /opt/proxy_config
+  developerPop:
+    opsVariables:
+      - name: SECTION_OPS_LOG_LEVEL
+        value: debug
+  httpContainer: imageapi
+  image: gcr.io/section-io/image-api:next-k1
+  logs:
+    additional:
+      - container: imageapi
+        name: error.log
+        stream: stderr
+    handler: imageapi
+    http:
+      container: imageapi
+      stream: stdout
+  name: image-api:next
+spec:
+  containers:
+    - name: imageapi
+      resources:
+        limits:
+          memory: 100Mi
+        requests:
+          memory: 15Mi
+hpa:
+  apiVersion: autoscaling/v2beta1
+  spec:
+    minReplicas: 2
+    maxReplicas: 5
+    metrics:
+    - type: Pods
+      pods:
+        metricName: pps20m
+        targetAverageValue: 600
