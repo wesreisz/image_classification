@@ -2,3 +2,4 @@ env
 ipynb_checkpoints
 .vscode/
 **/xception_weights_tf_dim_ordering_tf_kernels.h5
+notebook/xception.h5
